@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
+  admin: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -25,6 +29,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;
 

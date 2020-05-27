@@ -10,11 +10,8 @@ app.use(express.json());
 // Routes
 require('./routes/auth')(app);
 require('./routes/message')(app);
+require('./routes/user')(app);
 
 app.use(errors());
-
-app.get('/', (req, res) => {
-  res.send('OK');
-});
 
 module.exports = app;

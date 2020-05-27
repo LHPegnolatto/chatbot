@@ -8,6 +8,7 @@ router.post('/register', celebrate({
       name: Joi.string().required(),
       email: Joi.string().required(),
       password: Joi.string().required(),
+      admin: Joi.boolean(),
   }),
 }), authController.register);
 
