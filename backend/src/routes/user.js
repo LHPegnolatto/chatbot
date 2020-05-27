@@ -6,6 +6,15 @@ const userController = require('../controllers/userController');
 
 router.use(authMiddleware);
 
+router.post('/register', celebrate({
+  [Segments.BODY]: Joi.object().keys({
+      name: Joi.string().required(),
+      email: Joi.string().required(),
+      password: Joi.string().required(),
+      admin: Joi.boolean(),
+  }),
+}), userController.register);
+
 router.put('/update', celebrate({
   [Segments.BODY]: Joi.object().keys({
       id: Joi.string().required(),

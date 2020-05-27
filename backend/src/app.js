@@ -7,6 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Seed for create default values
+require('./config/seed');
+
 // Routes
 require('./routes/auth')(app);
 require('./routes/message')(app);
